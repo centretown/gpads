@@ -3,10 +3,12 @@ package gcmd
 import (
 	"flag"
 	"fmt"
-	"gpads/b2"
-	"gpads/gpads"
-	"gpads/pad"
 	"time"
+
+	"github.com/centretown/gpads/b2"
+
+	"github.com/centretown/gpads/gpads"
+	"github.com/centretown/gpads/pad"
 )
 
 var js pad.Pad = gpads.NewGPads()

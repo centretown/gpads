@@ -4,8 +4,7 @@ package joystickc
 #include "joystick.h"
 */
 import "C"
-
-import "gpads/pad"
+import "github.com/centretown/gpads/pad"
 
 var _ pad.Pad = NewJoyStickC()
 

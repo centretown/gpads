@@ -2,8 +2,9 @@ package gcmd
 
 import (
 	"fmt"
-	"gpads/b2"
-	"gpads/gpads"
+
+	"github.com/centretown/gpads/b2"
+	"github.com/centretown/gpads/gpads"
 )
 
 func LastButtonPressed(cmd *GCmd) {

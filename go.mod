@@ -1,4 +1,4 @@
-module gpads
+module github.com/centretown/gpads
 
 go 1.22.0
 

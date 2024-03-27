@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gpads/gcmd"
+
+	"github.com/centretown/gpads/gcmd"
 )
 
 func init() {

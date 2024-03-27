@@ -2,8 +2,8 @@ package gpads
 
 import (
 	"fmt"
-	"gpads/b2"
 
+	"github.com/centretown/gpads/b2"
 	"github.com/holoplot/go-evdev"
 )
 
