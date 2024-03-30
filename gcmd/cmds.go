@@ -3,8 +3,8 @@ package gcmd
 import (
 	"fmt"
 
-	"github.com/centretown/gpads/b2"
 	"github.com/centretown/gpads/gpads"
+	"github.com/centretown/gpads/try"
 )
 
 func LastButtonPressed(cmd *GCmd) {
@@ -14,22 +14,22 @@ func LastButtonPressed(cmd *GCmd) {
 
 func IsButtonUp(cmd *GCmd) {
 	up := js.IsPadButtonUp(cmd.Pad, cmd.Button)
-	fmt.Printf("[%d:%d]\r", cmd.Button, b2.ToInt(up))
+	fmt.Printf("[%d:%d]\r", cmd.Button, try.As[int](up))
 }
 
 func IsButtonDown(cmd *GCmd) {
 	down := js.IsPadButtonDown(cmd.Pad, cmd.Button)
-	fmt.Printf("[%d:%d]\r", cmd.Button, b2.ToInt(down))
+	fmt.Printf("[%d:%d]\r", cmd.Button, try.As[int](down))
 }
 
 func IsButtonReleased(cmd *GCmd) {
 	released := js.IsPadButtonReleased(cmd.Pad, cmd.Button)
-	fmt.Printf("[%d:%d]\r", cmd.Button, b2.ToInt(released))
+	fmt.Printf("[%d:%d]\r", cmd.Button, try.As[int](released))
 }
 
 func IsButtonPressed(cmd *GCmd) {
 	pressed := js.IsPadButtonPressed(cmd.Pad, cmd.Button)
-	fmt.Printf("[%d:%d]\r", cmd.Button, b2.ToInt(pressed))
+	fmt.Printf("[%d:%d]\r", cmd.Button, try.As[int](pressed))
 }
 
 func GetAxisValues(cmd *GCmd) {
@@ -62,7 +62,7 @@ func TestKeys(cmd *GCmd) {
 	count := gpads.RL_RightThumb - gpads.RL_Unknown + 1
 	for i := range count {
 		down := js.IsPadButtonDown(cmd.Pad, i)
-		fmt.Printf("[%x:%2d]", i, b2.ToInt(down))
+		fmt.Printf("[%x:%2d]", i, try.As[int](down))
 	}
 	fmt.Print("\r")
 }

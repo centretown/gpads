@@ -3,7 +3,7 @@ package gpads
 import (
 	"fmt"
 
-	"github.com/centretown/gpads/b2"
+	"github.com/centretown/gpads/try"
 	"github.com/holoplot/go-evdev"
 )
 
@@ -170,10 +170,10 @@ func (gpad *GPad) ReadState() {
 			}
 
 			gpad.ButtonState[button] = isDown
-			gpad.PressedOnce |= b2.ToInt64(!wasDown && isDown) << button
-			gpad.ReleasedOnce |= b2.ToInt64(wasDown && !isDown) << button
-			LastPressed = b2.ToInt(isDown)*button +
-				b2.ToInt(!isDown)*LastPressed
+			gpad.PressedOnce |= try.As[uint64](!wasDown && isDown) << button
+			gpad.ReleasedOnce |= try.As[uint64](wasDown && !isDown) << button
+			LastPressed = try.As[int](isDown)*button +
+				try.As[int](!isDown)*LastPressed
 		}
 	}
 

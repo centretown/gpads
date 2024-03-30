@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/centretown/gpads/b2"
+	"github.com/centretown/gpads/try"
 
 	"github.com/centretown/gpads/gpads"
 	"github.com/centretown/gpads/pad"
@@ -178,10 +178,10 @@ func NewCmds() []*GCmd {
 		cmd.Button = buttons[btnNext]
 		cmd.Delay = time.Duration(seconds[secNext]) * time.Second
 
-		padNext += b2.ToInt(padNext < jLast)
-		axisNext += b2.ToInt(axisNext < aLast)
-		btnNext += b2.ToInt(btnNext < bLast)
-		secNext += b2.ToInt(secNext < sLast)
+		padNext += try.As[int](padNext < jLast)
+		axisNext += try.As[int](axisNext < aLast)
+		btnNext += try.As[int](btnNext < bLast)
+		secNext += try.As[int](secNext < sLast)
 		cmds = append(cmds, &cmd)
 		showCmd(&cmd)
 	}
