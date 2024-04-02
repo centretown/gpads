@@ -4,6 +4,7 @@ package joystickc
 #include "joystick.h"
 */
 import "C"
+
 import "github.com/centretown/gpads/pad"
 
 var _ pad.Pad = NewJoyStickC()
@@ -26,6 +27,10 @@ func (js *JoystickC) IsPadAvailable(Joystick int) bool {
 
 func (js *JoystickC) GetPadName(Joystick int) string {
 	return C.GoString(C.GetJoystickName(C.int(Joystick)))
+}
+
+func (js *JoystickC) GetPadCount() int {
+	return int(C.GetJoystickCount())
 }
 
 func (js *JoystickC) IsPadButtonPressed(Joystick int, button int) bool {

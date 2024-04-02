@@ -167,6 +167,11 @@ bool IsJoystickAvailable(int Joystick)
 	return in_range(Joystick);
 }
 
+int GetJoystickCount()
+{
+	return joy_stick_count;
+}
+
 const char *GetJoystickName(int Joystick)
 {
 	if (not_in_range(Joystick))

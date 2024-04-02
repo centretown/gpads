@@ -3,11 +3,11 @@ package gpads
 import (
 	"fmt"
 
-	"github.com/centretown/gpads/pad"
+	// "github.com/centretown/gpads/pad"
 	"github.com/holoplot/go-evdev"
 )
 
-var _ pad.Pad = NewGPads()
+// var _ pad.Pad = NewGPads()
 
 const PAD_MAX = 4
 const UNDEFINED = "UNDEFINED"
@@ -72,7 +72,7 @@ func (js *GPads) IsPadAvailable(pad int) bool {
 	return !badPad(pad, js.padCount)
 }
 
-func (js *GPads) GetStickCount() int {
+func (js *GPads) GetPadCount() int {
 	return js.padCount
 }
 

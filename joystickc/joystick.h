@@ -3,7 +3,9 @@
 #include <stdbool.h>
 #include <sys/types.h>
 
-bool IsJoystickAvailable(int Joystick);                  
+bool IsJoystickAvailable(int Joystick);       
+
+int GetJoystickCount();
 
 const char *GetJoystickName(int Joystick);               
 

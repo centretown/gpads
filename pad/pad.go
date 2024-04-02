@@ -4,6 +4,7 @@ type Pad interface {
 	BeginPad()
 	IsPadAvailable(Joystick int) bool
 	GetPadName(Joystick int) string
+	GetPadCount() int
 	IsPadButtonPressed(Joystick int, button int) bool
 	IsPadButtonDown(Joystick int, button int) bool
 	IsPadButtonReleased(Joystick int, button int) bool
