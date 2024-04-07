@@ -7,7 +7,7 @@ import (
 	"github.com/holoplot/go-evdev"
 )
 
-var LastPressed int // Button number?
+var LastPressed int32 // Button number?
 
 type GPad struct {
 	PadType          PadType
@@ -126,8 +126,9 @@ func (gpad *GPad) ReadState() {
 	var (
 		isDown, wasDown, ok bool
 		info                evdev.AbsInfo
-		button              int
+		button              int32
 		code                evdev.EvCode
+		i                   int
 	)
 
 	absInfos, err := gpad.Device.AbsInfos()
@@ -144,7 +145,8 @@ func (gpad *GPad) ReadState() {
 
 	state, err := gpad.Device.State(evdev.EV_KEY)
 	if err == nil {
-		for button, code = range gpad.ButtonCodes {
+		for i, code = range gpad.ButtonCodes {
+			button = int32(i)
 			wasDown = gpad.ButtonState[button]
 			switch button {
 			case 0:
@@ -172,29 +174,29 @@ func (gpad *GPad) ReadState() {
 			gpad.ButtonState[button] = isDown
 			gpad.PressedOnce |= try.As[uint64](!wasDown && isDown) << button
 			gpad.ReleasedOnce |= try.As[uint64](wasDown && !isDown) << button
-			LastPressed = try.As[int](isDown)*button +
-				try.As[int](!isDown)*LastPressed
+			LastPressed = try.As[int32](isDown)*button +
+				try.As[int32](!isDown)*LastPressed
 		}
 	}
 
 }
 
-func (gpad *GPad) AxisValue(axis int) int32 {
+func (gpad *GPad) AxisValue(axis int32) int32 {
 	return gpad.AxisState[axis]
 }
 
-func (gpad *GPad) AxisMove(axis int) float32 {
+func (gpad *GPad) AxisMove(axis int32) float32 {
 	return float32(gpad.AxisState[axis] - gpad.AxisStatePrev[axis])
 }
 
-func (gpad *GPad) ButtonDown(button int) bool {
+func (gpad *GPad) ButtonDown(button int32) bool {
 	return gpad.ButtonState[button]
 }
-func (gpad *GPad) ButtonPressed(button int) bool {
+func (gpad *GPad) ButtonPressed(button int32) bool {
 	return gpad.PressedOnce&(1<<button) != 0
 }
 
-func (gpad *GPad) ButtonReleased(button int) bool {
+func (gpad *GPad) ButtonReleased(button int32) bool {
 	return gpad.ReleasedOnce&(1<<button) != 0
 }
 

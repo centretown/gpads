@@ -31,7 +31,7 @@ func (t PadType) String() string {
 // mirror raylib constants
 
 const (
-	RL_Unknown int = iota
+	RL_Unknown int32 = iota
 	RL_LeftFaceUp
 	RL_LeftFaceRight
 	RL_LeftFaceDown
@@ -118,7 +118,7 @@ var JoyButtons = []evdev.EvCode{
 // mirror raylib constants
 
 const (
-	RL_AxisLeftX int = iota
+	RL_AxisLeftX int32 = iota
 	RL_AxisLeftY
 	RL_AxisRightX
 	RL_AxisRightY

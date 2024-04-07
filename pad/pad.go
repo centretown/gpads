@@ -1,20 +1,24 @@
 package pad
 
 type Pad interface {
+	IsGamepadAvailable(Joystick int32) bool
+	GetGamepadName(Joystick int32) string
+	IsGamepadButtonPressed(Joystick int32, button int32) bool
+	IsGamepadButtonDown(Joystick int32, button int32) bool
+	IsGamepadButtonReleased(Joystick int32, button int32) bool
+	IsGamepadButtonUp(Joystick int32, button int32) bool
+	GetGamepadButtonPressed() int32
+	GetGamepadAxisCount(Joystick int32) int32
+	GetGamepadAxisMovement(Joystick int32, axis int32) float32
+	SetGamepadMappings(mappings string) int32
+}
+
+type PadG interface {
+	Pad
 	BeginPad()
-	IsPadAvailable(Joystick int) bool
-	GetPadName(Joystick int) string
-	GetPadCount() int
-	IsPadButtonPressed(Joystick int, button int) bool
-	IsPadButtonDown(Joystick int, button int) bool
-	IsPadButtonReleased(Joystick int, button int) bool
-	IsPadButtonUp(Joystick int, button int) bool
-	GetPadButtonPressed() int
-	GetPadAxisCount(Joystick int) int
-	GetPadButtonCount(Joystick int) int
-	GetPadAxisMovement(Joystick int, axis int) float32
-	GetPadAxisValue(Joystick int, axis int) int32
-	SetPadMappings(mappings string) int
+	GetPadButtonCount(Joystick int32) int32
+	GetPadCount() int32
+	GetButtonName(Joystick int32, button int32) string
+	GetPadAxisValue(Joystick int32, axis int32) int32
 	DumpPad()
-	GetButtonName(Joystick int, button int) string
 }

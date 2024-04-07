@@ -11,9 +11,8 @@ import (
 	"github.com/centretown/gpads/pad"
 )
 
-var js pad.Pad = gpads.NewGPads()
-
-// var js jstick.Jstick = joystickc.NewJoyStickC()
+// var js pad.PadG = joystickc.NewJoyStickC()
+var js pad.PadG = gpads.NewGPads()
 
 var pads IntSlice
 var keys StringSlice
@@ -24,9 +23,9 @@ var seconds IntSlice
 type GCmd struct {
 	Title  string
 	Cmd    func(*GCmd)
-	Pad    int
-	Button int
-	Axis   int
+	Pad    int32
+	Button int32
+	Axis   int32
 	Delay  time.Duration
 }
 
@@ -153,9 +152,9 @@ func NewCmds() []*GCmd {
 
 	cmds := make([]*GCmd, 0, len(keys))
 
-	ensureOneReturnLast := func(is *IntSlice, v int) int {
+	ensureOneReturnLast := func(is *IntSlice, v int32) int {
 		if len(*is) < 1 {
-			*is = []int{v}
+			*is = []int32{v}
 		}
 		return len(*is) - 1
 	}
@@ -195,11 +194,11 @@ func showCmd(c *GCmd) {
 
 }
 
-func showPad(pad int) {
+func showPad(pad int32) {
 	fmt.Printf("%s, available:%v, axes:%d, buttons:%d\n",
-		js.GetPadName(pad),
-		js.IsPadAvailable(pad),
-		js.GetPadAxisCount(pad),
+		js.GetGamepadName(pad),
+		js.IsGamepadAvailable(pad),
+		js.GetGamepadAxisCount(pad),
 		js.GetPadButtonCount(pad),
 	)
 }

@@ -12,7 +12,7 @@ func TestJoy(t *testing.T) {
 	j := NewGPads()
 	j.BeginPad()
 
-	if !j.IsPadAvailable(0) {
+	if !j.IsGamepadAvailable(0) {
 		t.Log("NOTHING TO TEST!")
 		return
 	}

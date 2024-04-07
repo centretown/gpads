@@ -19,7 +19,7 @@ func (ss *StringSlice) String() string {
 	return strings.Join(*ss, ", ")
 }
 
-type IntSlice []int
+type IntSlice []int32
 
 func (is *IntSlice) Set(value string) error {
 	var (
@@ -29,7 +29,7 @@ func (is *IntSlice) Set(value string) error {
 
 	v, err = strconv.Atoi(value)
 	if err == nil {
-		*is = append(*is, v)
+		*is = append(*is, int32(v))
 		return err
 	}
 	return err
@@ -38,7 +38,7 @@ func (is *IntSlice) Set(value string) error {
 func (is *IntSlice) String() string {
 	var ss []string = make([]string, len(*is))
 	for i, v := range *is {
-		ss[i] += strconv.Itoa(v)
+		ss[i] += strconv.Itoa(int(v))
 	}
 	return strings.Join(ss, ", ")
 }
